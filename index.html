@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>CampusBite</title>
+</head>
+
+
+<body>
+  <h1>CampusBite</h1>
+  <p>Track your Purdue meal swipes and Dining Dollars!</p>
+
+  <hr>
+
+  <h2>Your Dashboard</h2>
+
+  <h3>Meal Swipes Remaining</h3>
+  <p id="swipes">0</p>
+
+  <h3>Dining Dollars Remaining</h3>
+  <p id="dollars">$0.00</p>
+
+  <h3>Suggested Daily Budget</h3>
+  <p id="budget">$0.00</p>
+
+
+  <hr>
+
+  <h2>Set Up Your Meal Plan</h2>
+
+  <form id="setupForm">
+    <label for="startingSwipes">Starting Meal Swipes:</label>
+    <input type="number" id="startingSwipes" min="0" required>
+
+    <br><br>
+
+    <label for="startingDollars">Starting Dining Dollars:</label>
+    <input type="number" id="startingDollars" min="0" step="0.01" required>
+
+    <br><br>
+
+    <label for="endDate">Semester End Date:</label>
+    <input type="date" id="endDate" required>
+
+    <br><br>
+
+    <button type="submit">Save Meal Plan</button>
+  </form>
+
+
+  <hr>
+
+  <h2>Transaction History</h2>
+  <p>Your transactions will appear here.</p>
+
+  <script src="script.js"></script>
+
+</body>
+
+
+</html>
