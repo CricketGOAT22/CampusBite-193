@@ -21,3 +21,29 @@ document.getElementById("useSwipe").addEventListener("click", function () {
   }
 });
 
+
+document.getElementById("purchaseForm").addEventListener("submit", function (event) {
+  event.preventDefault();
+
+  // Get the amount spent
+  let amount = Number(document.getElementById("purchaseAmount").value);
+
+  // Get the current Dining Dollar balance
+  let dollars = Number(document.getElementById("dollars").textContent.replace("$", ""));
+
+  if (amount <= 0) {
+    alert("Please enter a valid amount.");
+  } else if (amount > dollars) {
+    alert("You do not have enough Dining Dollars!");
+  } else {
+    dollars -= amount;
+
+    // Update the dashboard
+    document.getElementById("dollars").textContent = "$" + dollars.toFixed(2);
+
+    // Clear the input
+    document.getElementById("purchaseAmount").value = "";
+  }
+});
+
+
