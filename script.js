@@ -35,6 +35,10 @@ document.getElementById("setupForm").addEventListener("submit", function (event)
   // Update the dashboard
   document.getElementById("swipes").textContent = swipes;
   document.getElementById("dollars").textContent = "$" + dollars.toFixed(2);
+
+
+  saveData();
+
 });
 
 document.getElementById("useSwipe").addEventListener("click", function () {
@@ -44,6 +48,7 @@ document.getElementById("useSwipe").addEventListener("click", function () {
     swipes--;
     document.getElementById("swipes").textContent = swipes;
     addTransaction("Meal Swipe", "1 swipe");
+    saveData();
   } else {
     alert("You have no meal swipes remaining!");
   }
@@ -71,11 +76,61 @@ document.getElementById("purchaseForm").addEventListener("submit", function (eve
 
 
     addTransaction("Dining Dollars", "$" + amount.toFixed(2));
+    saveData();
 
 
     // Clear the input
     document.getElementById("purchaseAmount").value = "";
   }
 });
+
+
+function saveData() {
+  let data = {
+    swipes: Number(document.getElementById("swipes").textContent),
+    dollars: Number(document.getElementById("dollars").textContent.replace("$", "")),
+    endDate: document.getElementById("endDate").value,
+    transactions: transactions
+  };
+
+  localStorage.setItem("campusbiteData", JSON.stringify(data));
+}
+
+
+function loadData() {
+  let savedData = localStorage.getItem("campusbiteData");
+
+  if (savedData === null) {
+    return;
+  }
+
+  let data = JSON.parse(savedData);
+
+  // Restore balances and semester end date
+  document.getElementById("swipes").textContent = data.swipes;
+  document.getElementById("dollars").textContent =
+    "$" + Number(data.dollars).toFixed(2);
+  document.getElementById("endDate").value = data.endDate;
+
+  // Restore transaction history
+  transactions = data.transactions;
+
+  let list = document.getElementById("transactionList");
+  list.innerHTML = "";
+
+  for (let i = transactions.length - 1; i >= 0; i--) {
+    let item = document.createElement("li");
+    let current = transactions[i];
+
+    item.textContent = current.type + ": -" +
+      current.amount + " (" + current.date + ")";
+
+    list.appendChild(item);
+  }
+}
+
+loadData();
+
+
 
 
