@@ -38,6 +38,7 @@ document.getElementById("setupForm").addEventListener("submit", function (event)
 
 
   saveData();
+  updateBudget();
 
 });
 
@@ -77,6 +78,7 @@ document.getElementById("purchaseForm").addEventListener("submit", function (eve
 
     addTransaction("Dining Dollars", "$" + amount.toFixed(2));
     saveData();
+    updateBudget();
 
 
     // Clear the input
@@ -127,9 +129,37 @@ function loadData() {
 
     list.appendChild(item);
   }
+  updateBudget();
 }
 
 loadData();
+
+
+function updateBudget() {
+  let dollars = Number(document.getElementById("dollars").textContent.replace("$", ""));
+  let dateInput = document.getElementById("endDate").value;
+
+  if (dateInput === "") {
+    return;
+  }
+
+  let today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  let endDate = new Date(dateInput + "T00:00:00");
+
+  let daysLeft = Math.round((endDate - today) / 86400000) + 1;
+
+  if (daysLeft <= 0) {
+    document.getElementById("budget").textContent = "$0.00";
+    return;
+  }
+
+  let dailyBudget = dollars / daysLeft;
+
+  document.getElementById("budget").textContent = "$" + dailyBudget.toFixed(2);
+}
+
 
 
 
