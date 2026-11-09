@@ -32,10 +32,26 @@ document.getElementById("setupForm").addEventListener("submit", function (event)
   let swipes = Number(document.getElementById("startingSwipes").value);
   let dollars = Number(document.getElementById("startingDollars").value);
 
+
+  let endDate = document.getElementById("endDate").value;
+
+  let today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  let selectedDate = new Date(endDate + "T00:00:00");
+
+  if (selectedDate < today) {
+    alert("Please choose today or a future semester end date.");
+    return;
+  }
+
+
   // Update the dashboard
   document.getElementById("swipes").textContent = swipes;
   document.getElementById("dollars").textContent = "$" + dollars.toFixed(2);
 
+  transactions = [];
+  document.getElementById("transactionList").innerHTML = "";
 
   saveData();
   updateBudget();
