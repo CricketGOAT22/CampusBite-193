@@ -1,5 +1,6 @@
 let transactions = [];
 
+
 function addTransaction(type, amount) {
   let transaction = {
     type: type,
@@ -8,22 +9,8 @@ function addTransaction(type, amount) {
   };
 
   transactions.push(transaction);
-
-  let list = document.getElementById("transactionList");
-  list.innerHTML = "";
-
-  // Display the newest transactions first
-  for (let i = transactions.length - 1; i >= 0; i--) {
-    let item = document.createElement("li");
-    let current = transactions[i];
-
-    item.textContent = current.type + ": -" +
-      current.amount + " (" + current.date + ")";
-
-    list.appendChild(item);
-  }
+  displayTransactions();
 }
-
 
 document.getElementById("setupForm").addEventListener("submit", function (event) {
   event.preventDefault();
@@ -132,19 +119,7 @@ function loadData() {
 
   // Restore transaction history
   transactions = data.transactions;
-
-  let list = document.getElementById("transactionList");
-  list.innerHTML = "";
-
-  for (let i = transactions.length - 1; i >= 0; i--) {
-    let item = document.createElement("li");
-    let current = transactions[i];
-
-    item.textContent = current.type + ": -" +
-      current.amount + " (" + current.date + ")";
-
-    list.appendChild(item);
-  }
+  displayTransactions();
   updateBudget();
 }
 
@@ -175,6 +150,23 @@ function updateBudget() {
 
   document.getElementById("budget").textContent = "$" + dailyBudget.toFixed(2);
 }
+
+
+function displayTransactions() {
+  let list = document.getElementById("transactionList");
+  list.innerHTML = "";
+
+  for (let i = transactions.length - 1; i >= 0; i--) {
+    let item = document.createElement("li");
+    let current = transactions[i];
+
+    item.textContent = current.type + ": -" +
+      current.amount + " (" + current.date + ")";
+
+    list.appendChild(item);
+  }
+}
+
 
 
 
