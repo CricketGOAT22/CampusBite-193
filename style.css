@@ -58,3 +58,27 @@ hr {
   font-size: 28px;
   font-weight: bold;
 }
+
+
+/* Mobile-friendly styling */
+@media (max-width: 600px) {
+  body {
+    margin: 0;
+    padding: 15px;
+  }
+
+  .dashboard-card {
+    padding: 15px;
+  }
+
+  input {
+    width: 100%;
+    box-sizing: border-box;
+    margin: 5px 0;
+  }
+
+  button {
+    width: 100%;
+    margin: 5px 0;
+  }
+}
