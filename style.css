@@ -82,3 +82,26 @@ hr {
     margin: 5px 0;
   }
 }
+
+
+.graph-row {
+  display: grid;
+  grid-template-columns: 75px 1fr 65px;
+  gap: 10px;
+  align-items: center;
+  margin: 12px 0;
+  font-size: 14px;
+}
+
+.graph-track {
+  background-color: #eeeeee;
+  height: 18px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.graph-bar {
+  background-color: #9d7200;
+  height: 100%;
+  border-radius: 5px;
+}
