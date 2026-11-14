@@ -10,6 +10,7 @@ function addTransaction(type, amount) {
 
   transactions.push(transaction);
   displayTransactions();
+  displaySpendingGraph();
 }
 
 document.getElementById("setupForm").addEventListener("submit", function (event) {
@@ -40,6 +41,7 @@ document.getElementById("setupForm").addEventListener("submit", function (event)
   transactions = [];
   document.getElementById("transactionList").innerHTML = "";
 
+  displaySpendingGraph();
   saveData();
   updateBudget();
 
@@ -166,6 +168,76 @@ function displayTransactions() {
     list.appendChild(item);
   }
 }
+
+
+function getWeeklySpending() {
+  let weeklySpending = [];
+
+  // Check each of the last 7 days
+  for (let i = 6; i >= 0; i--) {
+    let day = new Date();
+    day.setDate(day.getDate() - i);
+
+    let date = day.toLocaleDateString();
+    let total = 0;
+
+    // Find purchases made on this day
+    for (let j = 0; j < transactions.length; j++) {
+      let transaction = transactions[j];
+
+      if (transaction.type === "Dining Dollars" &&
+        transaction.date === date) {
+
+        let amount = Number(transaction.amount.replace("$", ""));
+        total += amount;
+      }
+    }
+
+    weeklySpending.push({
+      date: date,
+      total: total
+    });
+  }
+
+  return weeklySpending;
+}
+
+
+function displaySpendingGraph() {
+  let spending = getWeeklySpending();
+  let graph = document.getElementById("spendingGraph");
+  graph.innerHTML = "";
+
+  let highest = 0;
+
+  for (let day of spending) {
+    if (day.total > highest) {
+      highest = day.total;
+    }
+  }
+
+  for (let day of spending) {
+    let width = 0;
+
+    if (highest > 0) {
+      width = (day.total / highest) * 100;
+    }
+
+    graph.innerHTML += `
+          <div class="graph-row">
+              <span>${day.date}</span>
+              <div class="graph-track">
+                  <div class="graph-bar" style="width: ${width}%"></div>
+              </div>
+              <span>$${day.total.toFixed(2)}</span>
+          </div>
+      `;
+  }
+}
+
+displaySpendingGraph();
+
+
 
 
 
