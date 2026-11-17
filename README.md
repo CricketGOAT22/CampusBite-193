@@ -33,24 +33,30 @@ Students can check their remaining meal plan balances, but it can be difficult t
 No backend, database, or external API is required.
 
 
+
 ## How to Run
 
-1. Open a terminal.
+1. Open Terminal.
+
 2. Clone the repository:
 
+   ```bash
    git clone https://github.com/CricketGOAT22/CampusBite-193.git
+   ```
 
 3. Enter the project folder:
 
+   ```bash
    cd CampusBite-193
+   ```
 
 4. On a Mac, run:
 
+   ```bash
    open index.html
+   ```
 
-Alternatively, double-click index.html to open the application in a web browser.
-
-No extra installations, database, or server are required.
+Alternatively, open `index.html` directly in a web browser.
 
 ## Example Input and Output
 
@@ -71,9 +77,6 @@ After using 1 meal swipe and spending $10:
 
 Both transactions appear in the transaction history.
 The $10 purchase also appears in the weekly spending graph.
-
-
-No installation or additional software is needed to run the application.
 
 ## System Diagram
 
@@ -130,12 +133,19 @@ It displays Dining Dollar purchases from the last seven days.
 - [x] Improve website styling and mobile layout
 - [x] Add weekly spending graph using a feature branch
 - [x] Merge the completed graph into main
-- [ ] Complete final testing and documentation
+- [x] Complete final testing and documentation
 - [ ] Record and upload video walkthrough
+
 
 ## Project Status
 
-The MVP and weekly spending graph are implemented. Final documentation, testing, and video preparation are in progress.
+The MVP and weekly spending graph are complete.
+The application has been tested with a fresh GitHub clone,
+and all core functionality tests passed.
+
+The only remaining task is recording and submitting
+the final video walkthrough.
+
 
 ## Demo
 
