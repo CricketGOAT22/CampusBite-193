@@ -159,5 +159,5 @@ The project is ready for final submission on Ed.
 
 ## Demo
 
-[Watch the 3–4 minute CampusBite-193 final project walkthrough](https://youtu.be/OYFbnJ6kNMc)
+[Watch the 3–4 minute CampusBite-193 final project walkthrough](https://youtu.be/R8sgyN9p8A4)
 
