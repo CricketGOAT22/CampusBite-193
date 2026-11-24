@@ -134,7 +134,7 @@ It displays Dining Dollar purchases from the last seven days.
 - [x] Add weekly spending graph using a feature branch
 - [x] Merge the completed graph into main
 - [x] Complete final testing and documentation
-- [ ] Record and upload video walkthrough
+- [x] Record and upload video walkthrough
 
 
 ## Project Status
@@ -143,12 +143,11 @@ The MVP and weekly spending graph are complete.
 The application has been tested with a fresh GitHub clone,
 and all core functionality tests passed.
 
-The only remaining task is recording and submitting
-the final video walkthrough.
+The final video walkthrough has been recorded and uploaded.
+The project is ready for final submission on Ed.
 
 
 ## Demo
 
-A 3–4 minute video walkthrough will be added here
-after the final recording is completed.
+[Watch the 3–4 minute CampusBite-193 final project walkthrough](https://youtu.be/OYFbnJ6kNMc)
 
