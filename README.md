@@ -78,11 +78,21 @@ After using 1 meal swipe and spending $10:
 Both transactions appear in the transaction history.
 The $10 purchase also appears in the weekly spending graph.
 
-## System Diagram
+## How It Works
 
-The diagram below shows how the CampusBite website,
-JavaScript logic, budget calculator, and localStorage
-work together.
+CampusBite uses HTML and CSS for the website's interface and JavaScript
+to process user actions. When a student records a meal swipe or Dining
+Dollar purchase, JavaScript updates the remaining balance and transaction
+history. The daily budget calculator uses the remaining Dining Dollars
+and semester end date to suggest how much the student can spend each day.
+
+The weekly spending graph uses transaction history to display Dining
+Dollar purchases from the last seven days. Browser localStorage saves
+balances, transactions, and the semester end date so the information
+remains available even after refreshing the page.
+
+The system diagram below shows how these components work together.
+
 
 ![CampusBite System Diagram](docs/CampusBite_System_Diagram.png)
 
