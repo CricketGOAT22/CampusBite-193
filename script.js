@@ -16,7 +16,7 @@ function addTransaction(type, amount) {
 document.getElementById("setupForm").addEventListener("submit", function (event) {
   event.preventDefault();
 
-  // Get the values entered by the student
+
   let swipes = Number(document.getElementById("startingSwipes").value);
   let dollars = Number(document.getElementById("startingDollars").value);
 
@@ -34,7 +34,7 @@ document.getElementById("setupForm").addEventListener("submit", function (event)
   }
 
 
-  // Update the dashboard
+
   document.getElementById("swipes").textContent = swipes;
   document.getElementById("dollars").textContent = "$" + dollars.toFixed(2);
 
@@ -67,10 +67,8 @@ document.getElementById("useSwipe").addEventListener("click", function () {
 document.getElementById("purchaseForm").addEventListener("submit", function (event) {
   event.preventDefault();
 
-  // Get the amount spent
   let amount = Number(document.getElementById("purchaseAmount").value);
 
-  // Get the current Dining Dollar balance
   let dollars = Number(document.getElementById("dollars").textContent.replace("$", ""));
 
   if (amount <= 0) {
@@ -80,7 +78,7 @@ document.getElementById("purchaseForm").addEventListener("submit", function (eve
   } else {
     dollars -= amount;
 
-    // Update the dashboard
+
     document.getElementById("dollars").textContent = "$" + dollars.toFixed(2);
 
 
@@ -89,7 +87,6 @@ document.getElementById("purchaseForm").addEventListener("submit", function (eve
     updateBudget();
 
 
-    // Clear the input
     document.getElementById("purchaseAmount").value = "";
   }
 });
@@ -122,13 +119,13 @@ function loadData() {
 
   let data = JSON.parse(savedData);
 
-  // Restore balances and semester end date
+
   document.getElementById("swipes").textContent = data.swipes;
   document.getElementById("dollars").textContent =
     "$" + Number(data.dollars).toFixed(2);
   document.getElementById("endDate").value = data.endDate;
 
-  // Restore transaction history
+
   transactions = data.transactions;
   displayTransactions();
   updateBudget();
@@ -188,7 +185,7 @@ function displayTransactions() {
 function getWeeklySpending() {
   let weeklySpending = [];
 
-  // Check each of the last 7 days
+
   for (let i = 6; i >= 0; i--) {
     let day = new Date();
     day.setDate(day.getDate() - i);
