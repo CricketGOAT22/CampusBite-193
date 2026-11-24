@@ -38,6 +38,9 @@ document.getElementById("setupForm").addEventListener("submit", function (event)
   document.getElementById("swipes").textContent = swipes;
   document.getElementById("dollars").textContent = "$" + dollars.toFixed(2);
 
+
+  // A new meal plan should start with a fresh history so old
+  // purchases do not affect the new plan's spending graph.
   transactions = [];
   document.getElementById("transactionList").innerHTML = "";
 
@@ -92,6 +95,12 @@ document.getElementById("purchaseForm").addEventListener("submit", function (eve
 });
 
 
+/*
+ * I used localStorage because CampusBite is a simple personal tracker
+ * that does not need a database or user accounts.
+ * It lets the student's balances and transaction history remain saved
+ * even after the browser is closed.
+ */
 function saveData() {
   let data = {
     swipes: Number(document.getElementById("swipes").textContent),
@@ -141,8 +150,14 @@ function updateBudget() {
 
   let endDate = new Date(dateInput + "T00:00:00");
 
+
+  // Include today because the student can still spend Dining Dollars
+  // on the current day. Rounding gives us a whole number of days.
   let daysLeft = Math.round((endDate - today) / 86400000) + 1;
 
+
+  // Avoid dividing by zero or showing a negative budget
+  // after the semester has ended.
   if (daysLeft <= 0) {
     document.getElementById("budget").textContent = "$0.00";
     return;
@@ -181,7 +196,10 @@ function getWeeklySpending() {
     let date = day.toLocaleDateString();
     let total = 0;
 
-    // Find purchases made on this day
+
+    // Reuse recorded transactions so students don't have to
+    // enter spending twice. Only Dining Dollar purchases count
+    // because meal swipes don't subtract from that balance.
     for (let j = 0; j < transactions.length; j++) {
       let transaction = transactions[j];
 
